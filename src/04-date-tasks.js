@@ -19,8 +19,10 @@
  *    'Tue, 26 Jan 2016 13:48:02 GMT' => Date()
  *    'Sun, 17 May 1998 03:00:00 GMT+01' => Date()
  */
-function parseDataFromRfc2822(/* value */) {
-  throw new Error('Not implemented');
+function parseDataFromRfc2822(value) {
+  const a = Date.parse(value);
+  return a;
+  // throw new Error('Not implemented');
 }
 
 /**
@@ -34,8 +36,10 @@ function parseDataFromRfc2822(/* value */) {
  *    '2016-01-19T16:07:37+00:00'    => Date()
  *    '2016-01-19T08:07:37Z' => Date()
  */
-function parseDataFromIso8601(/* value */) {
-  throw new Error('Not implemented');
+function parseDataFromIso8601(value) {
+  const a = Date.parse(value);
+  return a;
+  // throw new Error('Not implemented');
 }
 
 
@@ -53,8 +57,16 @@ function parseDataFromIso8601(/* value */) {
  *    Date(2012,1,1)    => true
  *    Date(2015,1,1)    => false
  */
-function isLeapYear(/* date */) {
-  throw new Error('Not implemented');
+function isLeapYear(date) {
+  const a = date.getFullYear();
+  if (a % 4 === 0) {
+    if (a % 100 === 0 && a % 400 !== 0) {
+      return false;
+    }
+    return true;
+  }
+  return false;
+  // throw new Error('Not implemented');
 }
 
 
@@ -73,8 +85,13 @@ function isLeapYear(/* date */) {
  *    Date(2000,1,1,10,0,0),  Date(2000,1,1,10,0,0,250)     => "00:00:00.250"
  *    Date(2000,1,1,10,0,0),  Date(2000,1,1,15,20,10,453)   => "05:20:10.453"
  */
-function timeSpanToString(/* startDate, endDate */) {
-  throw new Error('Not implemented');
+function timeSpanToString(startDate, endDate) {
+  const date1 = +new Date(startDate);
+  const date2 = +new Date(endDate);
+  const Lag = Math.ceil(Math.abs(date2 - date1));
+  const arrayResult = new Date(Lag).toISOString().split('T');
+  return arrayResult[1].replace('Z', '');
+  // throw new Error('Not implemented');
 }
 
 
@@ -94,8 +111,18 @@ function timeSpanToString(/* startDate, endDate */) {
  *    Date.UTC(2016,3,5,18, 0) => Math.PI
  *    Date.UTC(2016,3,5,21, 0) => Math.PI/2
  */
-function angleBetweenClockHands(/* date */) {
-  throw new Error('Not implemented');
+function angleBetweenClockHands(date) {
+  const minAngle = 6 * date.getUTCMinutes();
+  const hourAngle = (60 * (date.getUTCHours() % 12) + date.getUTCMinutes()) / 2;
+
+  const angleDif = Math.abs(minAngle - hourAngle);
+  if (angleDif > 180) {
+    return ((360 - angleDif) * Math.PI) / 180;
+  }
+
+  return (angleDif * Math.PI) / 180;
+
+  // throw new Error('Not implemented');
 }
 
 
