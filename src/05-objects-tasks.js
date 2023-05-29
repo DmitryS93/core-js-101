@@ -20,8 +20,13 @@
  *    console.log(r.height);      // => 20
  *    console.log(r.getArea());   // => 200
  */
-function Rectangle(/* width, height */) {
-  throw new Error('Not implemented');
+function Rectangle(width, height) {
+  const r = {};
+  r.width = width;
+  r.height = height;
+  r.getArea = () => width * height;
+  return r;
+  // throw new Error('Not implemented');
 }
 
 
@@ -35,8 +40,10 @@ function Rectangle(/* width, height */) {
  *    [1,2,3]   =>  '[1,2,3]'
  *    { width: 10, height : 20 } => '{"height":10,"width":20}'
  */
-function getJSON(/* obj */) {
-  throw new Error('Not implemented');
+function getJSON(obj) {
+  const r = JSON.stringify(obj);
+  return r;
+  // throw new Error('Not implemented');
 }
 
 
@@ -52,6 +59,8 @@ function getJSON(/* obj */) {
  *
  */
 function fromJSON(/* proto, json */) {
+  // proto = JSON.parse(json);
+  // return proto;
   throw new Error('Not implemented');
 }
 
@@ -111,16 +120,28 @@ function fromJSON(/* proto, json */) {
  */
 
 const cssSelectorBuilder = {
-  element(/* value */) {
-    throw new Error('Not implemented');
+  element(value) {
+    const newObj = Object.create(cssSelectorBuilder);
+    newObj.selector = value;
+    return newObj;
+    // throw new Error('Not implemented');
+  },
+  stringify() {
+    return this.selector;
   },
 
-  id(/* value */) {
-    throw new Error('Not implemented');
+  id(value) {
+    const newObj = Object.create(cssSelectorBuilder);
+    newObj.selector = `#${value}`;
+    return newObj;
+    // throw new Error('Not implemented');
   },
 
-  class(/* value */) {
-    throw new Error('Not implemented');
+  class(value) {
+    const newObj = Object.create(cssSelectorBuilder);
+    newObj.selector = `.${value}`;
+    return newObj;
+    // throw new Error('Not implemented');
   },
 
   attr(/* value */) {
@@ -147,3 +168,4 @@ module.exports = {
   fromJSON,
   cssSelectorBuilder,
 };
+
