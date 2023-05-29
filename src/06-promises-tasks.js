@@ -107,7 +107,6 @@ function getFastestPromise(array) {
  *
  */
 function chainPromises(/* array, action */) {
-  // return Promise.all(array);
   throw new Error('Not implemented');
 }
 
