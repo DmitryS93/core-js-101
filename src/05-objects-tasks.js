@@ -67,6 +67,5 @@ module.exports = {
   Rectangle,
   getJSON,
   fromJSON,
-  cssSelectorBuilder,
 };
 
