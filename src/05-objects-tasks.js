@@ -62,6 +62,7 @@ function fromJSON(/* proto, json */) {
   throw new Error('Not implemented');
 }
 
+
 /**
  * Css selectors builder
  *
@@ -118,23 +119,14 @@ function fromJSON(/* proto, json */) {
 
 const cssSelectorBuilder = {
   element(/* value */) {
-    // const newObj = Object.create(cssSelectorBuilder);
-    // newObj.selector = value;
-    // return newObj;
     throw new Error('Not implemented');
   },
 
   id(/* value */) {
-    // const newObj = Object.create(cssSelectorBuilder);
-    // newObj.selector = `#${value}`;
-    // return newObj;
     throw new Error('Not implemented');
   },
 
   class(/* value */) {
-    // const newObj = Object.create(cssSelectorBuilder);
-    // newObj.selector = `.${value}`;
-    // return newObj;
     throw new Error('Not implemented');
   },
 
@@ -154,10 +146,11 @@ const cssSelectorBuilder = {
     throw new Error('Not implemented');
   },
 };
+
+
 module.exports = {
   Rectangle,
   getJSON,
   fromJSON,
   cssSelectorBuilder,
 };
-
